@@ -6,7 +6,7 @@ export const verify = async (
 	expectedSignature: string,
 ) => {
 	const keyBytes = new TextEncoder().encode(signingKey);
-	const key = await jose.importRawKey(keyBytes, "HS256");
+	const key = await jose.importJWK({ kty: "oct", k: Buffer.from(keyBytes).toString("base64") }, "HS256");
 
 	try {
 		const signature = await new jose.CompactSign(rawBody)
