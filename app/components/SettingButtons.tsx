@@ -42,6 +42,7 @@ export default function SettingButtons() {
 
 	const saveImage = async () => {
 		setUploading(true);
+		//@ts-ignore
 		const image = editor.current.getImageScaledToCanvas().toDataURL();
 		const res = await fetch("/api/userinfo/image", {
 			method: "POST",
