@@ -98,6 +98,7 @@ export default function SettingButtons() {
 						type="file"
 						className="file-input w-full mt-2 bg-primary"
 						onChange={(e) =>
+							// @ts-ignore
 							setFile(e.target?.files ? e.target.files[0] : null)
 						}
 						accept="image/png, image/jpeg, image/jpg"
