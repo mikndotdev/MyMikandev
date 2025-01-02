@@ -12,7 +12,7 @@ export async function GET() {
 
 	if (!session) {
 		await signIn("logto", {
-			redirectTo: `${process.env.APP_URL}/dashboard`,
+			redirectTo: `/dashboard`,
 		});
 	}
 }
