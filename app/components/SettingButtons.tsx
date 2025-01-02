@@ -61,12 +61,12 @@ export default function SettingButtons() {
 	return (
 		<main>
 			<dialog className="modal" open={nameEdit}>
-				<div className="modal-box w-11/12 max-w-md">
+				<div className="modal-box w-11/12 max-w-md bg-secondary">
 					<h3 className="font-bold text-lg">Edit username</h3>
 					<input
 						type="text"
 						placeholder="Type here"
-						className="input input-bordered input-primary w-full mt-2"
+						className="input input-bordered input-primary w-full mt-2 bg-primary"
 						onChange={(e) => setName(e.target.value)}
 						value={name}
 					/>
@@ -89,13 +89,13 @@ export default function SettingButtons() {
 				</div>
 			</dialog>
 			<dialog className="modal" open={imageEdit}>
-				<div className="modal-box w-11/12 max-w-md">
+				<div className="modal-box w-11/12 max-w-md bg-secondary">
 					<h3 className="font-bold text-lg">
 						Upload a new profile picture
 					</h3>
 					<input
 						type="file"
-						className="file-input w-full mt-2"
+						className="file-input w-full mt-2 bg-primary"
 						onChange={(e) =>
 							setFile(e.target?.files ? e.target.files[0] : null)
 						}

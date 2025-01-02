@@ -19,8 +19,8 @@ export default async function Dashboard() {
 	return (
 		<main className="flex min-h-screen flex-col items-center p-4">
 			<div className="w-full max-w-4xl">
-				<h1 className="text-white font-bold text-3xl md:text-4xl text-center my-5">
-					Account Portal
+				<h1 className="text-primary font-bold text-3xl md:text-4xl text-center my-5">
+					MyMikanDev
 				</h1>
 				<div className="card bg-gray-600 w-full p-4 md:p-6">
 					<UserCard />

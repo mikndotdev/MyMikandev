@@ -8,7 +8,7 @@ export default function UserCard() {
 	if (status === "loading") {
 		return (
 			<div className="card bg-gray-700 w-full p-6 flex justify-center">
-				<span className="loading loading-spinner loading-lg" />
+				<span className="loading loading-spinner loading-lg text-primary" />
 			</div>
 		);
 	}
@@ -26,7 +26,9 @@ export default function UserCard() {
 						<p className="text-white text-2xl md:text-3xl font-bold">
 							{session?.user?.name}
 						</p>
-						<p className="text-sm">UID {session?.user?.id}</p>
+						<p className="text-sm text-primary">
+							UID {session?.user?.id}
+						</p>
 					</div>
 					<p className="text-white text-base md:text-lg mt-1">
 						{session?.user?.email}
