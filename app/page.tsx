@@ -1,13 +1,13 @@
 export const runtime = "edge";
 
-import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
 import { auth, signIn } from "@/auth";
 
-export async function GET() {
+export default async function Index() {
 	const session = await auth();
 
 	if (session) {
-		return NextResponse.redirect(`${process.env.APP_URL}/dashboard`);
+		return redirect(`${process.env.APP_URL}/dashboard`);
 	}
 
 	if (!session) {
