@@ -7,8 +7,8 @@ import "./globals.css";
 const hsr = localFont({ src: "./assets/HSR.woff2" });
 
 export const metadata: Metadata = {
-	title: "Logto User portal",
-	description: "Edit your profile information here.",
+	title: "MyMikanDev",
+	description: "Manage your MikanDev account",
 };
 
 export default function RootLayout({
