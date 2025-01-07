@@ -71,7 +71,7 @@ export default function SettingButtons() {
 						onChange={(e) => setName(e.target.value)}
 						value={name}
 					/>
-					<div className="modal-action flex-wrap gap-2">
+					<div className="modal-action flex-wrap gap-2 justify-center">
 						<button
 							className="btn btn-error text-white"
 							onClick={() => setNameEdit(false)}
@@ -144,7 +144,7 @@ export default function SettingButtons() {
 							</div>
 						</div>
 					)}
-					<div className="modal-action flex-wrap gap-2">
+					<div className="modal-action flex-wrap gap-2 justify-center">
 						<button
 							className="btn btn-error text-white"
 							onClick={() => setImageEdit(false)}
@@ -152,6 +152,7 @@ export default function SettingButtons() {
 							<FaXmark className="w-5 h-5" />
 							Cancel
 						</button>
+						{file && (
 						<button
 							className="btn btn-info text-white"
 							onClick={() => saveImage()}
@@ -164,6 +165,7 @@ export default function SettingButtons() {
 							)}
 							Save
 						</button>
+						)}
 					</div>
 				</div>
 			</dialog>
