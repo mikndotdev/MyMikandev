@@ -6,7 +6,10 @@ export const verify = async (
 	expectedSignature: string,
 ) => {
 	const keyBytes = new TextEncoder().encode(signingKey);
-	const key = await jose.importJWK({ kty: "oct", k: Buffer.from(keyBytes).toString("base64") }, "HS256");
+	const key = await jose.importJWK(
+		{ kty: "oct", k: Buffer.from(keyBytes).toString("base64") },
+		"HS256",
+	);
 
 	try {
 		const rawBodyUint8Array = new Uint8Array(Buffer.concat(rawBody));
@@ -22,6 +25,8 @@ export const verify = async (
 
 		return signatureHex === expectedSignature;
 	} catch (error) {
-		throw new Error("Signature verification failed: " + (error as Error).message);
+		throw new Error(
+			"Signature verification failed: " + (error as Error).message,
+		);
 	}
 };

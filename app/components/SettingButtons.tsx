@@ -153,18 +153,18 @@ export default function SettingButtons() {
 							Cancel
 						</button>
 						{file && (
-						<button
-							className="btn btn-info text-white"
-							onClick={() => saveImage()}
-							disabled={file === null || uploading}
-						>
-							{uploading ? (
-								<span className="loading loading-spinner loading-sm" />
-							) : (
-								<FaSave className="w-5 h-5" />
-							)}
-							Save
-						</button>
+							<button
+								className="btn btn-info text-white"
+								onClick={() => saveImage()}
+								disabled={file === null || uploading}
+							>
+								{uploading ? (
+									<span className="loading loading-spinner loading-sm" />
+								) : (
+									<FaSave className="w-5 h-5" />
+								)}
+								Save
+							</button>
 						)}
 					</div>
 				</div>
