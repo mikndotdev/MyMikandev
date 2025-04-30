@@ -1,14 +1,13 @@
-import { auth } from "@/auth";
+import { getLogtoContext } from "@logto/next/server-actions";
+import { logtoConfig } from "@/app/logto";
 import { NextRequest } from "next/server";
 
-export const runtime = "edge";
-
 export async function POST(request: NextRequest) {
-	const session = await auth();
+	const { claims, isAuthenticated } = await getLogtoContext(logtoConfig);
 	const body = await request.json();
 	const { name } = body;
 
-	if (!session) {
+	if (!isAuthenticated) {
 		return new Response("Unauthorized", { status: 401 });
 	}
 
@@ -44,7 +43,7 @@ export async function POST(request: NextRequest) {
 	const token = data.access_token;
 
 	const LogtoInfoResponse = await fetch(
-		`${process.env.LOGTO_URL}/api/users/${session?.user?.id}`,
+		`${process.env.LOGTO_URL}/api/users/${claims?.sub}`,
 		{
 			method: "PATCH",
 			headers: {

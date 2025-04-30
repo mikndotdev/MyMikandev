@@ -1,6 +1,5 @@
-export const runtime = "edge";
-
-import { auth } from "@/auth";
+import { getLogtoContext } from "@logto/next/server-actions";
+import { logtoConfig } from "../logto";
 import { cookies } from "next/headers";
 import ReturnButton from "@/app/components/returnButton";
 import SettingsButtons from "@/app/components/SettingButtons";
@@ -8,11 +7,11 @@ import UserCard from "@/app/components/UserCard";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
-	const session = await auth();
+	const { claims, isAuthenticated } = await getLogtoContext(logtoConfig);
 	const cookieStore = await cookies();
 	const callback = await cookieStore.get("callback");
 
-	if (!session) {
+	if (!isAuthenticated) {
 		await redirect("/");
 	}
 

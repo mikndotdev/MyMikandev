@@ -1,8 +1,7 @@
-import { auth } from "@/auth";
+import { getLogtoContext } from "@logto/next/server-actions";
+import { logtoConfig } from "@/app/logto";
 import { NextRequest } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-
-export const runtime = "edge";
 
 const s3Client = new S3Client({
 	region: process.env.S3_REGION,
@@ -14,7 +13,7 @@ const s3Client = new S3Client({
 });
 
 export async function POST(request: NextRequest) {
-	const session = await auth();
+	const { claims, isAuthenticated } = await getLogtoContext(logtoConfig);
 	const body = await request.json();
 	const { image } = body;
 
@@ -22,7 +21,7 @@ export async function POST(request: NextRequest) {
 		return new Response("Avatar uploads are disabled", { status: 503 });
 	}
 
-	if (!session) {
+	if (!isAuthenticated) {
 		return new Response("Unauthorized", { status: 401 });
 	}
 
@@ -32,7 +31,7 @@ export async function POST(request: NextRequest) {
 
 	const imagePayload = Buffer.from(image.split(",")[1], "base64");
 	const contentType = image.split(";")[0].split(":")[1];
-	const filename = `${process.env.UPLOAD_DIR}/${session?.user?.id}-${Date.now()}.${contentType.split("/")[1]}`;
+	const filename = `${process.env.UPLOAD_DIR}/${claims?.sub}-${Date.now()}.${contentType.split("/")[1]}`;
 
 	const putObjectCommand = new PutObjectCommand({
 		Bucket: process.env.S3_BUCKET,
@@ -78,7 +77,7 @@ export async function POST(request: NextRequest) {
 	const token = data.access_token;
 
 	const LogtoInfoResponse = await fetch(
-		`${process.env.LOGTO_URL}/api/users/${session?.user?.id}`,
+		`${process.env.LOGTO_URL}/api/users/${claims?.sub}`,
 		{
 			method: "PATCH",
 			headers: {

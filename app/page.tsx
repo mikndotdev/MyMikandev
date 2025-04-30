@@ -1,15 +1,15 @@
-import { auth, signIn } from "@/auth";
 import { redirect } from "next/navigation";
+import { getLogtoContext, signIn, signOut } from "@logto/next/server-actions";
+import { logtoConfig } from "./logto";
 
 import Image from "next/image";
 
 import Logo from "@/app/assets/img/mikan-vtube-transparent.png";
 
 export default async function Login() {
-	const session = await auth();
+	const { isAuthenticated } = await getLogtoContext(logtoConfig);
 
-	if (session) {
-		console.log(session);
+	if (isAuthenticated) {
 		await redirect("/dashboard");
 	}
 
@@ -27,7 +27,7 @@ export default async function Login() {
 				<form
 					action={async () => {
 						"use server";
-						await signIn("logto");
+						await signIn(logtoConfig);
 					}}
 				>
 					<button type="submit" className={"btn btn-success mt-3"}>

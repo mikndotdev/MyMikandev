@@ -1,5 +1,4 @@
 "use client";
-
 import { toast } from "sonner";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { AiOutlinePicture } from "react-icons/ai";
@@ -7,7 +6,6 @@ import { FaXmark } from "react-icons/fa6";
 import { FaSave } from "react-icons/fa";
 import { FaArrowRotateLeft, FaArrowRotateRight } from "react-icons/fa6";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import AvatarEditor from "react-avatar-editor";
 import { useRef } from "react";
 
@@ -20,7 +18,6 @@ export default function SettingButtons() {
 	const [zoom, setZoom] = useState(1);
 	const [rotate, setRotate] = useState(0);
 	const [uploading, setUploading] = useState(false);
-	const { update } = useSession();
 
 	const saveName = async () => {
 		if (name.length < 3) {
@@ -34,7 +31,6 @@ export default function SettingButtons() {
 		if (res.ok) {
 			toast.success("Username updated.");
 			setNameEdit(false);
-			await update();
 		} else {
 			toast.error("Failed to update username.");
 		}
@@ -52,7 +48,6 @@ export default function SettingButtons() {
 			toast.success("Profile picture updated.");
 			setImageEdit(false);
 			setUploading(false);
-			await update();
 		} else {
 			toast.error("Failed to update profile picture.");
 			setUploading(false);
