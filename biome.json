@@ -15,5 +15,11 @@
 		"indentWidth": 4,
 		"indentStyle": "tab",
 		"ignore": [".next/", "out/", ".vercel/", ".wrangler/"]
+	},
+	"javascript": {
+		"formatter": {
+			"bracketSpacing": true,
+			"lineWidth": 120
+		}
 	}
 }

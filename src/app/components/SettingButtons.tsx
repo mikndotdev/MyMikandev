@@ -67,17 +67,11 @@ export default function SettingButtons() {
 						value={name}
 					/>
 					<div className="modal-action flex-wrap gap-2 justify-center">
-						<button
-							className="btn btn-error text-white"
-							onClick={() => setNameEdit(false)}
-						>
+						<button className="btn btn-error text-white" onClick={() => setNameEdit(false)}>
 							<FaXmark className="text-white w-5 h-5" />
 							Cancel
 						</button>
-						<button
-							className="btn btn-info text-white"
-							onClick={() => saveName()}
-						>
+						<button className="btn btn-info text-white" onClick={() => saveName()}>
 							<FaSave className="text-white w-5 h-5" />
 							Save
 						</button>
@@ -86,9 +80,7 @@ export default function SettingButtons() {
 			</dialog>
 			<dialog className="modal" open={imageEdit}>
 				<div className="modal-box w-11/12 max-w-md bg-secondary">
-					<h3 className="font-bold text-lg">
-						Upload a new profile picture
-					</h3>
+					<h3 className="font-bold text-lg">Upload a new profile picture</h3>
 					<input
 						type="file"
 						className="file-input w-full mt-2 bg-primary"
@@ -117,22 +109,14 @@ export default function SettingButtons() {
 								max="10"
 								value={zoom}
 								className="range range-primary w-full"
-								onChange={(e) =>
-									setZoom(Number(e.target.value))
-								}
+								onChange={(e) => setZoom(Number(e.target.value))}
 							/>
 							<div className="flex flex-col md:flex-row gap-3">
-								<button
-									className="btn btn-info text-white"
-									onClick={() => setRotate(rotate - 90)}
-								>
+								<button className="btn btn-info text-white" onClick={() => setRotate(rotate - 90)}>
 									<FaArrowRotateLeft className="w-5 h-5" />
 									Rotate left
 								</button>
-								<button
-									className="btn btn-info text-white"
-									onClick={() => setRotate(rotate + 90)}
-								>
+								<button className="btn btn-info text-white" onClick={() => setRotate(rotate + 90)}>
 									Rotate right
 									<FaArrowRotateRight className="w-5 h-5" />
 								</button>
@@ -140,10 +124,7 @@ export default function SettingButtons() {
 						</div>
 					)}
 					<div className="modal-action flex-wrap gap-2 justify-center">
-						<button
-							className="btn btn-error text-white"
-							onClick={() => setImageEdit(false)}
-						>
+						<button className="btn btn-error text-white" onClick={() => setImageEdit(false)}>
 							<FaXmark className="w-5 h-5" />
 							Cancel
 						</button>
@@ -165,18 +146,12 @@ export default function SettingButtons() {
 				</div>
 			</dialog>
 			<div className="flex flex-col md:flex-row gap-3 w-full">
-				<button
-					className="btn btn-info text-white w-full md:w-auto"
-					onClick={() => setNameEdit(true)}
-				>
+				<button className="btn btn-info text-white w-full md:w-auto" onClick={() => setNameEdit(true)}>
 					<MdDriveFileRenameOutline className="w-5 h-5" />
 					Edit username
 				</button>
 				{process.env.NEXT_PUBLIC_ALLOW_AVATAR_UPLOAD && (
-					<button
-						className="btn btn-info text-white w-full md:w-auto"
-						onClick={() => setImageEdit(true)}
-					>
+					<button className="btn btn-info text-white w-full md:w-auto" onClick={() => setImageEdit(true)}>
 						<AiOutlinePicture className="w-5 h-5" />
 						Change profile picture
 					</button>
