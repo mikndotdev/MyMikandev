@@ -7,7 +7,9 @@ import UserCard from "@/app/components/UserCard";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
-	const { claims, isAuthenticated } = await getLogtoContext(logtoConfig);
+	const { claims, isAuthenticated } = await getLogtoContext(logtoConfig, {
+		fetchUserInfo: true,
+	});
 	const cookieStore = await cookies();
 	const callback = await cookieStore.get("callback");
 
